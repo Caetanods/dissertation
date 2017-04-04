@@ -30,6 +30,11 @@
 \usepackage{tocloft}
 \usepackage{titlesec}
 \title{Title}
+% Changes the name of the table of contents:
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Table of Contents}%
+}
 
 % Changes font-size of headings; currently they are about 2 points larger than text, if 
 % desire to make them different, change \large size below to whatever is desired.
