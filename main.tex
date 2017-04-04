@@ -1,0 +1,116 @@
+%% This is the preambule for the dissertation and the main document.
+%% Global options and global packages will be stated here.
+%% Then all preliminary pages and each chapter will be collated here.
+
+%% Global options and packages:
+\documentclass[12pt,letterpaper]{report} % This is not the correct page size!!
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%% To include the math symbols ad formulas:
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+%% To deal with the figures:
+\usepackage{graphicx}
+\graphicspath{{./fig/}} % Set the path for the figures.
+%% The bibliography package:
+\usepackage{natbib}
+%% To change the line spacing:
+\usepackage{setspace}
+%% To change the format of the subsection:
+\usepackage{titlesec}
+\titleformat{\subsection} {\normalfont\large\itshape}{\thesection}{1em}{}
+%% This is to make links with the citations and urls in the web.
+%% The hidelinks option will hide those green squares around the citations.
+\usepackage[hidelinks]{hyperref}
+%% Some words cannot be hyphenated:
+\hyphenation{Anolis}
+
+% Allows extra dots between subheadings in TOC
+\usepackage{tocloft}
+\usepackage{titlesec}
+\title{Title}
+
+% Changes font-size of headings; currently they are about 2 points larger than text, if 
+% desire to make them different, change \large size below to whatever is desired.
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+
+% Adds required dots between sections and page numbers in TOC
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\renewcommand\cftsecdotsep{\cftdot}
+\renewcommand\cftsubsecdotsep{\cftdot}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdot}} % for parts
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdot}} % for chapters
+
+%Clears plain-page pg# settings, relocates pg#'s @ top-right-corner.
+\makeatletter
+\renewcommand{\ps@plain}{
+\renewcommand\@oddhead{\hfill\normalfont\textrm{\thepage}}
+\renewcommand\@evenhead{}
+\renewcommand\@oddfoot{}
+\renewcommand\@evenfoot{}}
+
+%Reduces space between section headings and top margin
+\def\@makechapterhead#1{%
+  \vspace*{-48\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+%        \huge\bfseries \@chapapp\space \thechapter
+% Above line replaced by below line to make chapter title uppercase and smaller
+           \large\bfseries \MakeUppercase{\chaptertitlename} \thechapter
+        \par\nobreak
+        \vskip 0\p@
+    \fi
+    \interlinepenalty\@M
+    \large \bfseries #1\par\nobreak
+    \vskip 20\p@
+  }}
+
+\def\@makeschapterhead#1{%
+  \vspace*{-48\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \large \bfseries  #1\par\nobreak
+    \vskip 20\p@
+  }}
+\makeatother
+
+%Changes leading pg#'s to roman sytle
+\renewcommand{\thepage}{\roman{page}}
+
+%Changes default indenting in list of figures to 0 
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{0em}{2.3em}}% Default: 1.5em/2.3em
+\let\l@table\l@figure
+\makeatother
+
+%Margins
+\addtolength{\voffset}{-.5in}
+\addtolength{\hoffset}{-.25in}
+\setlength{\marginparwidth}{1in}
+\setlength{\oddsidemargin}{.375in}
+\setlength{\marginparsep}{0in}
+\setlength{\topmargin}{12pt}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{20pt}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\footskip}{0in}
+
+%Sets all text to double space, per \usepackage{setspace} 
+%\doublespacing
+\onehalfspacing
+
+% Names list of figures and table of contents explicitly and sets spacing above and below titles
+\renewcommand{\listfigurename}{\vspace{-2.2cm} \large List of Figures \vspace{-1cm}}
+\renewcommand{\listtablename}{\vspace{-2.2cm} \large List of Tables \vspace{-1cm}}
+\renewcommand{\contentsname}{\vspace{-2.2cm} \large Table of Contents \vspace{-1cm}}
+
+\begin{document}
+
+\include{preliminary_pages}
+
+\end{document}
