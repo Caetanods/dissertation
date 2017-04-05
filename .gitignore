@@ -2,4 +2,5 @@ build/
 UI_Thesis_LaTeX_Template_Sp_2016.tex
 *.odt
 *.doc
+*.docx
 *.txt
