@@ -17,14 +17,8 @@
 \usepackage{natbib}
 %% To change the line spacing:
 \usepackage{setspace}
-%% To change the format of the subsection:
-\usepackage{titlesec}
-\titleformat{\subsection} {\normalfont\large\itshape}{\thesection}{1em}{}
-%% This is to make links with the citations and urls in the web.
 %% The hidelinks option will hide those green squares around the citations.
 \usepackage[hidelinks]{hyperref}
-%% Some words cannot be hyphenated:
-\hyphenation{Anolis}
 
 % Allows extra dots between subheadings in TOC
 \usepackage{tocloft}
@@ -36,11 +30,16 @@
     {Table of Contents}%
 }
 
-% Changes font-size of headings; currently they are about 2 points larger than text, if 
-% desire to make them different, change \large size below to whatever is desired.
-\titleformat*{\section}{\large\bfseries}
-\titleformat*{\subsection}{\large\bfseries}
-\titleformat*{\subsubsection}{\large\bfseries}
+% The 'titleformat' and 'titlespacing' commands take care of the formating for all sections.
+% Here 'titleformat' changes the font and style of the section whereas 'titlespacing' will modify the space before and after the section. Very useful!
+
+%\titleformat{\chapter}[block]{\large\bfseries\uppercase}{Chapter \thechapter :}{4pt}{}{}
+\titleformat{\chapter}[block]{\large\bfseries}{CHAPTER \thechapter :}{4pt}{}{}
+
+\titlespacing{\chapter}{0pt}{-20pt}{1cm}
+\titleformat*{\section}{\large\bfseries}%
+\titleformat*{\subsection}{\large\itshape}%
+\titleformat*{\subsubsection}{\itshape}%
 
 % Adds required dots between sections and page numbers in TOC
 \renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
@@ -56,31 +55,6 @@
 \renewcommand\@evenhead{}
 \renewcommand\@oddfoot{}
 \renewcommand\@evenfoot{}}
-
-%Reduces space between section headings and top margin
-\def\@makechapterhead#1{%
-  \vspace*{-48\p@}%
-  {\parindent \z@ \raggedright \normalfont
-    \ifnum \c@secnumdepth >\m@ne
-%        \huge\bfseries \@chapapp\space \thechapter
-% Above line replaced by below line to make chapter title uppercase and smaller
-           \large\bfseries \MakeUppercase{\chaptertitlename} \thechapter
-        \par\nobreak
-        \vskip 0\p@
-    \fi
-    \interlinepenalty\@M
-    \large \bfseries #1\par\nobreak
-    \vskip 20\p@
-  }}
-
-\def\@makeschapterhead#1{%
-  \vspace*{-48\p@}%
-  {\parindent \z@ \raggedright
-    \normalfont
-    \interlinepenalty\@M
-    \large \bfseries  #1\par\nobreak
-    \vskip 20\p@
-  }}
 \makeatother
 
 %Changes leading pg#'s to roman sytle
@@ -114,8 +88,29 @@
 \renewcommand{\listtablename}{\vspace{-2.2cm} \large List of Tables \vspace{-1cm}}
 \renewcommand{\contentsname}{\vspace{-2.2cm} \large Table of Contents \vspace{-1cm}}
 
+%% List of words that cannot be hyphenated or which hyphenation need to be defined.
+\hyphenation{Anolis}
+
 \begin{document}
 
-\include{preliminary_pages}
+%% First the preliminary pages for the dissertation document.
+\input{preliminary_pages}
+
+%Sets page count at one
+\setcounter{page}{1}
+%Sets pg# type to display arabic numerals
+\renewcommand{\thepage}{\arabic{page}}
+
+%% Now these are the chapters for the dissertation
+%% Need to make some modifications. Figures that were Suplementary now need to be main text. 
+\input{chapter_2}
+
+%% The references for ALL chapters will be at the end of the chapters. The references need to come BEFORE any appendices.
+\bibliographystyle{sysbio}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{GeoMorpho}
+
+%% Appendices would come here:
+% \include{Appendices}
 
 \end{document}
