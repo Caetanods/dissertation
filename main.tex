@@ -13,6 +13,8 @@
 %% To deal with the figures:
 \usepackage{graphicx}
 \graphicspath{{./fig/}} % Set the path for the figures.
+%% To make the table with automatic line breaks:
+\usepackage{tabularx}
 %% The bibliography package:
 \usepackage{natbib}
 %% To change the line spacing:
@@ -23,19 +25,33 @@
 % Allows extra dots between subheadings in TOC
 \usepackage{tocloft}
 \usepackage{titlesec}
-\title{Title}
+% \title{Title}
+
 % Changes the name of the table of contents:
 \addto\captionsenglish{% Replace "english" with the language you use
   \renewcommand{\contentsname}%
     {Table of Contents}%
 }
 
+% Changes the font of the table of contents and the list of tables and figures.
+\renewcommand{\cfttoctitlefont}{\normalfont\large\bfseries}
+\renewcommand{\cftloftitlefont}{\normalfont\large\bfseries}
+\renewcommand{\cftlottitlefont}{\normalfont\large\bfseries}
+
+% Changes the white space before the table of contents and the list of tables and figures.
+\setlength{\cftbeforetoctitleskip}{-13pt}
+\setlength{\cftbeforeloftitleskip}{-13pt}
+\setlength{\cftbeforelottitleskip}{-13pt}
+
+% Changes the white space after the table of contents and the list of tables and figures.
+\setlength{\cftaftertoctitleskip}{5pt}
+\setlength{\cftafterloftitleskip}{5pt}
+\setlength{\cftafterlottitleskip}{5pt}
+
 % The 'titleformat' and 'titlespacing' commands take care of the formating for all sections.
 % Here 'titleformat' changes the font and style of the section whereas 'titlespacing' will modify the space before and after the section. Very useful!
-
 %\titleformat{\chapter}[block]{\large\bfseries\uppercase}{Chapter \thechapter :}{4pt}{}{}
 \titleformat{\chapter}[block]{\large\bfseries}{CHAPTER \thechapter :}{4pt}{}{}
-
 \titlespacing{\chapter}{0pt}{-20pt}{1cm}
 \titleformat*{\section}{\large\bfseries}%
 \titleformat*{\subsection}{\large\itshape}%
@@ -104,6 +120,9 @@
 %% Now these are the chapters for the dissertation
 %% Need to make some modifications. Figures that were Suplementary now need to be main text. 
 \input{chapter_2}
+
+\addtocontents{toc}{\protect\newpage} % To make table of contents start in the next page.
+\input{chapter_3}
 
 %% The references for ALL chapters will be at the end of the chapters. The references need to come BEFORE any appendices.
 \bibliographystyle{sysbio}
