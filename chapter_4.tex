@@ -1,0 +1,39 @@
+%% This is the Chapter 4
+
+%\begin{hyphenrules}{nohyphenation}
+\chapter{USING VALUES OF A TRAIT TO PREDICT EVOLUTIONARY RATES OF ANOTHER TRAIT}
+%\end{hyphenrules}
+
+\section{Abstract}
+
+To be done.
+
+\section{Introduction}
+
+To be done.
+
+\section{ The model and implementation }
+
+Here we use continuous mathematical functions to model the rates of evolution of a trait (i.e., the response trait) with respect to the values of another trait (i.e., the predictor trait). The model aims to study the association between the macro-evolutionary patterns of a trait evolving on a phylogenetic tree and the rates of evolution of a second trait on the same tree. Figure \ref{fig:model_example} shows the fundamental concepts of the model. % A summary figure to explain the concept of the model. Try to use colors to associate the simmap on the branches of the tree and the function.
+Both the predictor and response traits are continuous traits for the same set of species present on the phylogenetic tree. The mathematical function represented by the line on Figure \ref{fig:model_example} describes the variation of evolutionary rates for the response trait in function of the trait values of the predictor trait. The difference between the present model and other phylogenetic comparative models of trait evolution with varying rates, such as AUTEUR, bayOU, and BAMM traits, is that these methods only fit rates of evolution for a single trait, informed by the distribution of trait values across the species, branch lengths and topology of the phylogenetic tree. In contrast, here we introduce the use of a second trait to inform the variation of rates of evolution across the branches of the tree.
+
+The model can be sub-divided into two components; ancestral values for the predictor trait are mapped alongside the branches of the phylogenetic tree and evolutionary rate regimes for the response trait are assigned to the phylogeny using a mathematical function with respect to the map of ancestral predictor trait values. For this we first assign the predictor trait values to $\mathit{k}$ ordered categories defined by $\mathit{k}$ - 1 equidistant breakpoints across the range of the predictor trait values (see x-axis of Figure \ref{fig:model_example}). Then we estimate the evolutionary rate transitions among the $\mathit{k}$ categories with a model that restricts transition rates to happen only between neighbouring states. For example, since the categories are ordered, a transition from a small trait value category $\mathit{k_{i}}$ to a larger trait value category $\mathit{k_{i+3}}$ need to be preceded by transitions to and from the intermediary categories $\mathit{k_{i+1}}$ and $\mathit{k_{i+2}}$. Thus, the number of categories reflects how fine-grained is the model with respect to the macro-evolutionary pattern of the (continuously distributed) predictor trait.
+
+The transition rates between the $\mathit{k}$ categories of the predictor trait can be estimated using a meristic Markov model (Mkn). Here the predictor trait is assumed to evolve under a single homogeneous rate or multiple rate regimes. Homogeneous rate can be described by constraining all transition rates to be equal whereas more complex evolutionary patterns can be described by allowing transition rates to and from each category to vary. Of course, one can fit and choose the model that best describes the evolutionary history of the predictor trait across the branches of the phylogenetic tree. As the number of categories increases the single rate Mkn model becomes equivalent to a single rate Brownian-motion (BM) model whereas the unconstrained Mkn model spans heterogeneous rate trait evolution models such as multiple rate BM, BM with a trend and Ornstein–Uhlenbeck (OU). However, the Mkn model fits a single transition matrix to the phylogenetic tree and, as a result, cannot be equivalent to time dependent models such as the accelerated/decelerated (ACDC) and early burst (EB) models.
+
+Once we have the Mkn transition matrix for the predictor trait categories, we produce multiple stochastic mapping histories of the predictor trait on the phylogenetic tree. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
