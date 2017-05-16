@@ -60,35 +60,68 @@ To check the performance of the method we will focus in three very common, but d
 We generated a phylogenetic tree with 200 species using a pure-birth model (tree height=1). Then we simulated a predictor trait following a single rate BM model ($\sigma^{2}$=0.5) and divided it into 10 trait categories mapped to the branches of the tree. We will refer to the result of this simulation as the true mapped tree. We used the true mapped tree to assign evolutionary rate regimes to the branches following one of the mathematical functions described above and simulated the response trait under a multi-rate BM model. We repeated this process in order to produce 100 datasets for each mathematical function.
 
 In order to fit the models to the generated data, we estimated a meristic Mkn transition matrix for the predictor trait with $\mathit{k}$=5 and equal transition rates. We produced 10 stochastic mapping histories based on this transition matrix and performed a maximum likelihood estimate for each of the mathematical functions under each of the stochastic mapping histories. We chose the best model by comparing the mean pairwise AIC values across all stochastic maps. We repeated model fit and model test for each of the 300 simulated datasets. We computed error rates as the frequency in which the model used to generate the data was not selected as the best model.
+% Need to say here that we chose a threshold of 2 AIC units to find support for the best model among the set of models.
 
 Preliminary tests showed that it is often difficult to find the global maximum likelihood for the parameters of the model using minimization algorithms. Thus, we applied three distinct strategies to generate the starting point for the searches. First we generated starting points by drawing from a flat distribution with large range of parameter values (from -400 to 400). Starting points generated using this approach are unlikely to be close to the global maximum but provide an acceptable representation of the parameter space. We refer for the approach as `wide'. Second we used a more informed approach by optimizing the parameters of the mathematical functions to produce evolutionary rates equal to $\sigma^{2}$ estimated for a homogeneous BM model with the response trait as the tip data for the tree. Then we defined a narrow range of parameter values (-10 and +10 units) around the best fit and used this distribution to draw starting points. We refer to this strategy as `narrow'. Finally, we applied the most informative strategy by setting the starting point of the ML searches as the true parameter value for the models. When performing analysis with a model that did not generated the data we set the mathematical function as to minimize the distance relative to the evolutionary rates predicted by the true model. We defined this search strategy as `fixed'. We compare and discuss results among the different search strategies.
 
-\subsection{Sensitivity to trait categorization}
+%\subsection{Sensitivity to trait categorization}
 % In a subsequent test I might be able to make a more comprehensible thing by increasing the number of categories of the true model or even making a full continuous simulation.
 
-Our model associates the evolutionary rates of a continuous response trait to the trait values of a continuous predictor trait by transforming the data into ordered categories. On one hand, if the number of trait categories is large enough the trait evolution model converges with continuous models, such as Brownian-motion. On the other hand, this raises concerns about the adequacy of the model and parameter estimates when one applies only a small number of trait categories.
+%Our model associates the evolutionary rates of a continuous response trait to the trait values of a continuous predictor trait by transforming the data into ordered categories. On one hand, if the number of trait categories is large enough the trait evolution model converges with continuous models, such as Brownian-motion. On the other hand, this raises concerns about the adequacy of the model and parameter estimates when one applies only a small number of trait categories.
 
-In order to test the sensitivity of the model to the number of trait categories ($\mathit{k}$), we simulated data following the same approach described above for performance simulations. However, we increased the number of trait categories to 15 and simulated datasets only with the linear function. We estimated parameter values for the linear model and performed model test using $\mathit{k}$ equal to 15, 10, and 5. Then we computed the distance between estimated parameter values to the true parameter values and the frequency that the generating model was chosen as the best model.
+%In order to test the sensitivity of the model to the number of trait categories ($\mathit{k}$), we simulated data following the same approach described above for performance simulations. However, we increased the number of trait categories to 15 and simulated datasets only with the linear function. We estimated parameter values for the linear model and performed model test using $\mathit{k}$ equal to 15, 10, and 5. Then we computed the distance between estimated parameter values to the true parameter values and the frequency that the generating model was chosen as the best model.
+
+\subsection{Likelihood surface for the linear function}
+
+Results from simulations showed that the linear model estimated with starting points draw from a wide range of the parameter space (the `wide' strategy) often have worse fit than estimates with starting points informed by the data (the `narrow' strategy). To investigate whether this pattern is associated with the shape of the likelihood surface rather than a systematic bias due to the implementation of a restricted pool of starting points we computed summary statistics from the results of maximum likelihood searches based on the simulated data.
+
+First we calculated the number of times that the multiple independent searches for the same data reached the maximum likelihood score among all the searches, we defined this quantity as `hits'. To compute the number of `hits' we aggregated the maximum likelihood score returned by each of the independent searches. Then we counted the number of searches for which the $\Delta$log-likelihood score was less than 0.0001 with respect to the maximum among all searches. A large number of `hits' indicates that multiple searches starting from different points in the parameter space converged towards the same likelihood score and, therefore, the same combination of parameter values. Such result support the hypothesis that this point is the global maximum log-likelihood for the model. Following, we tested whether there is an association between the number of `hits' and how close is the model estimate to the true model that generated the data. For this we only used estimates for the same models that generated the data.
 
 \section{Results}
 
-First we computed the proportion in which each of the generating models was recovered by model selection using the Akaike information criterion (AIC), including the uncertainty associated with the use of stochastic mapped histories and the different approaches used to define the starting point for the maximum likelihood searches. Table \ref{tab:best_aic_sims} shows the number of times that each model had the best AIC score across all 100 simulated datasets. Almost all replicates, independent of search strategy, recovered the true model when data was generated using a constant evolutionary rate throughout the tree. Table \ref{tab:support_true_model} also shows that there are strong support for the constant model when compared to the other models. In contrast, results from the linear and step models show that the strategy used to choose the starting point for the optimizer has important influence on AIC scores.
+\subsection{Performance simulations}
 
-For the linear model, in which rates of evolution are positively correlated with the predictor trait, both the `wide' and `narrow' starting point distributions (Table \ref{tab:best_aic_sims}) show a very strong skew towards the step model being the best model in the set of alternative models. The pattern drastically change when the initial point for the optimizer is set to be equal to the parameter values that generated the data (i.e., `fixed' strategy). The majority of the replicates recover the generating model as the model with highest AIC scores, although the step model is still found to have the best AIC score in 22 out of 100 simulations. When we compute the number of replicates that showed mean pairwise $\Delta$AIC scores across stochastic mapped histories larger than 2 AIC units, we can see that evidence in favor of the linear model was only found among the majority of simulation replicates using the `fixed' search strategy (Tables \ref{tab:support_true_model} and \ref{tab:reject_true_model}). When any other starting point scheme is employed, the performance of the linear model is low and alternative models often show better support.
+First we computed the proportion that each of the generating models was recovered by model selection using the Akaike information criterion (AIC) while integrating the uncertainty associated with the use of stochastic mapped histories and comparing different approaches used to define the starting points for the maximum likelihood searches. Table \ref{tab:best_aic_sims} shows the number of times that each model had the best AIC score, computed as the mean pairwise AIC over stochastic mapped histories, across all 100 simulated datasets. Then we used $\Delta$AIC scores, also based on the pairwise AIC across stochastic mapped histories, to record support for (Table \ref{tab:support_true_model}) and against (Table \ref{tab:reject_true_model}) the model that generated the data using a threshold of 4 AIC units. For each simulation replicate we also plotted the distance between $\sigma^{2}$ values following parameter estimates for the competing mathematical functions and the true value for $\sigma^{2}$ for each category used to simulate the data (Figures \ref{fig:chart_const}, \ref{fig:chart_linear} and \ref{fig:chart_step}). Below we describe results when data are simulated with the constant, linear, and step functions.
 
-Data generated under the step model show the reverse pattern when compared with the linear model. The most wide starting point schemes `wide' and `narrow' returned the generating model as the model with best AIC scores for the majority of replicates (Table \ref{tab:best_aic_sims}). The difference among AIC scores is also strong and in favor of the step model (Tables \ref{tab:support_true_model} and \ref{tab:reject_true_model}). On the other hand, the most informative starting point scheme (`fixed') results in every model showing the best AIC score with similar frequency among the simulation replicates (Table \ref{tab:best_aic_sims}). When computing pairwise mean $\Delta$AIC differences among models, there are more support in favor of the step model (Table \ref{tab:support_true_model}) than any other model (Table \ref{tab:reject_true_model}).
+The majority of replicates, independent of search strategy, recovered the true model as the model with best AIC scores when data was generated using a constant evolutionary rate throughout the tree (Table \ref{tab:best_aic_sims}). However, for most cases, there is a lack of support in favor (Table \ref{tab:support_true_model}) or against (Table \ref{tab:reject_true_model}) the constant model when compared with alternative models. This results suggest that $\Delta$AIC cannot substantiate any difference between models when data is simulated under a constant rate of evolution. Indeed, the distance between rates estimated for each model and the true rates is comparable among most of the replicates, starting point strategies and models (Figure \ref{fig:chart_const}). Only the linear function estimated using the `wide' starting point strategy can be rejected as a good model to explain the data when contrasted with the true model. Figure \ref{fig:chart_const} (top row, middle column) shows that rates estimated under this model are much larger than reasonable values given the tree and the trait data, which suggests that the estimator failed to find the global maximum for the likelihood of the model.
 
-Model choice with the Akaike information criterion (AIC) uses the likelihood and the number of parameters to compare models, however it is also important to evaluate the parameter estimates for each model. For this we plotted the distance between the estimates of evolutionary rate and the true values of the rate for each of the five predictor trait value categories (Figures \ref{fig:chart_const}, \ref{fig:chart_linear} and \ref{fig:chart_step}). When data was simulated with the constant model, parameter estimates under the generating model are much closer to the true rates and the variance is much smaller than estimates using alternative models (Figure ). The step function show a good overall fit, with distances centred on zero and reasonable variance. In contrast, the linear model shows the worse fit, since rates of evolution are often estimated to be orders of magnitude larger than the true parameter value.
+Data generated under the linear function, where rates of evolution of the response trait show a positive correlation with predictor trait values, show results with the true model having the highest AIC on the majority of simulation replicates for both the `narrow' and `fixed' starting point approaches (Table \ref{tab:best_aic_sims}). This result changes in the case of the `wide' distribution of starting points, since the step function shows the best AIC scores even though the data was simulated under a linear function. When we compute the support for the model that generated the data both under the `narrow' and `fixed' starting points, we see that there is support for the linear model against the constant model on the majority of replicates and about half of the replicates show support in favor of the linear model when compared with the step model (Table \ref{tab:support_true_model}). When using the `wide' starting point distribution, however, $\Delta$AIC scores point to both alternative models as better models than the true model (Table \ref{tab:reject_true_model}). Parameter estimates for these models show that results from the linear model under the `wide' starting point strategy produce overly large evolutionary rates compared to competing models (Figure \ref{fig:chart_linear} - top row, middle column), resulting in a worse fit to the data. Using either the `narrow' and `fixed' starting point produce better parameter estimates for the linear function (Figure \ref{fig:chart_linear} - middle and bottom rows) that reflect as more support for the true model based on $\Delta$AIC scores (Table \ref{tab:support_true_model}).
 
+The step model is the most parameter-rich of this set models. When data was simulated under this model, only results from the `wide' starting point distribution show the true model as the model most frequently with the highest AIC scores (Table \ref{tab:best_aic_sims}). Under the other starting point strategies the step model is as frequent the best AIC scoring model as the linear model (Table \ref{tab:best_aic_sims}). This pattern is also present in the results of the support for the step model over alternative models. When using the `wide' starting point distribution the step model is favored over the linear model in the majority of replicates whereas there is no difference between these models in the majority of replicates when using the other starting point approaches (Tables \ref{tab:support_true_model} and \ref{tab:reject_true_model}). Parameter estimates for the linear function under the `wide' starting point distribution show the same pattern as in the previous results: rates are too large and too distant from the parameters that generated the data (Figure \ref{fig:chart_step} - top row, middle column). On the other cases the rates estimates for the linear and the step models show good fit to the data.
 
+\subsection{Likelihood surface for the linear function}
 
-Figure \ref{fig:chart_const} are results with data generated under constant rate, Figure \ref{fig:chart_linear} are results with the linear function as the true model and Figure \ref{fig:chart_step} with the step function as the true model. For data generated using the constant model, 
+The maximum likelihood estimate (MLE) for the parameters of the different mathematical functions show a trend that the `wide' approach to sample starting points often result in worse fit than the other starting point strategies (see Figures \ref{fig:chart_const}, \ref{fig:chart_linear}, and \ref{fig:chart_step}). When we compute the number of `hits' among all replicates, each with 500 independent searches, for the `wide' and `narrow' starting point distributions we can see that the same trend is reflected in how often independent searches return the same maximum likelihood point. Figure \ref{fig:hist_hits} (middle row) shows the distribution of frequencies of number of `hits' for the linear function using the `wide' and `narrow' starting schemes. When using the `wide' starting point distribution, almost all replicates returned only a single `hit' whereas the frequency of 2 or more `hits' increase significantly under the `narrow' search strategy. Interestingly, the effect of the `wide' distribution of starting point on the number of `hits' is not so pronounced with the other models in the set (Figure \ref{fig:hist_hits}).
 
-% A similar, but also from a very different approach, is to ask about how good is these models to explaing the observed data? We can do this with parametric bootstraps. I can make plots comparing the distance from the observed data and the simulations for each of the estimated models.
+The association between a small number of `hits' and poor parameter estimates for the model is made clear by the results shown in Figure \ref{fig:pardist}. The mean absolute distance between the parameter estimates and the true value for the model is larger when the search result returned a single `hit' than when 2 or more `hits' occur. Furthermore, the variance of this distance is much larger when the search resulted in a single `hit', meaning that one is likely to get a maximum likelihood estimate far from the ``true'' parameter values that generated the data. Surprisingly, there is no gradual improvement in estimates with the number of `hits', searches with 2 or more `hits' show similar mean and variance of the distance between estimated and true parameter values for the model (Figure \ref{fig:pardist}).
+
+\section{Discussion}
+
+The models described herein test for an association between a continuous trait and the evolutionary rates of a second trait evolving on the same phylogenetic tree. We tested the performance of three nested models using simulated datasets: the constant, linear and step functions. However, the same analysis framework can be easily extended to any mathematical function, nested or non-nested, that relates the values of a predictor trait to rates of evolution of a response trait under a Brownian-motion model.
+
+Our simulations show that it is difficult to recover the true model that generated the data as the best model using the Akaike information criterion (AIC) because, on average, there is not enough distinction among the AIC scores of competing models (Table \ref{tab:support_true_model}). However, parameter estimates for all models generally produced evolutionary rates congruent with rates used to generate the data even when the true model was not significantly different than the alternative models (Table \ref{tab:support_true_model}). When data was generated under the simplest model, for example, the slope of the linear function (mean=0.01, sd=0.22) and the difference between rates of the step function (mean=0.01, sd=0.29) were on average centered on 0. This means that the pattern of the evolutionary rates predicted across the tree was fairly similar across all models and suggests that any of the models in this set would yield similar conclusions about the macroevolution of the traits. Such results reinforce the idea that when performing multi-model inference it is important to focus on the parameter estimates for each model rather than turning our attention only to the model selection criteria or the arbitrary threshold statistics that may rank one model above the others.
+
+Different from the other models, the performance of the linear model, that describes a linear relationship between the predictor trait and the rates of evolution of the response trait, is dependent on the strategy used to draw random starting points for the maximum likelihood search. The likelihood surface for this model has multiple local optima that increase the chance that multiple independent searches will not return the global optima for the likelihood when starting from distant regions of the parameter space (See Figures \ref{fig:hist_hits} and \ref{fig:pardist}). For this reason, searches using a very wide starting point region will often result in poor parameter estimates for the linear function. However, using the evolutionary rate for a homogeneous Brownian-motion model estimated for the response trait to define a parameter space region where to draw starting points from is a reliable strategy to set starting points that are within reach of the global maximum despite the presence of various local optima. We suggest that empirical studies implementing the linear function, or other parameter-rich mathematical functions, use a similar starting point strategy for model estimation.
+
+The step model implemented here does not describe a continuous relationship between the predictor and response traits. This model applies a threshold value that is dependent on the predictor trait, then regions of the phylogenetic tree reconstructed as below the predictor threshold share a single rate that is independent of the rate for regions of the phylogeny reconstructed as above the threshold. For this reason, the contrast with the linear function is important to understand how the transition from regime-oriented models to continuous functions can improve our inferences of macroevolutionary patterns. Our simulations show that when the linear model is properly estimated (using the `narrow' starting point strategy) it is difficult to differentiate the regime-like step model from the continuous linear model (Tables \ref{tab:support_true_model} and \ref{tab:reject_true_model}). Two attributes of the models and inference might be driving such results: model complexity and sensibility to discretization.
+
+There is a balance between the number of parameters that constitute a model and how well the model fits to the data or, more precisely, how likely is the observed data to be generated under the model when implementing model selection using the Akaike information criterion (AIC). For instance, the linear model has one fewer parameter than the step model and, all else equal, it is preferred over the latter. Indeed, we found the linear model to be preferred over the step model on 30\% of our simulations whereas the reverse only occurred once (Table \ref{tab:support_true_model}). The linear model predicts a distinct rate value for each predictor trait category following a strict relationship whereas the step model has two independent rate regimes. When the number of categories used to discretize the model is low, it is possible that two independent rate regimes fit to the data better even when the generating model was linear. Thus, support for the continuous model might increase if a higher number of rate categories is used.
+
+\subsection{Future directions}
+
+Our simulations explored different relationships between the predictor trait and the response trait. Results suggest that we are able to estimate correctly the pattern of rate variation across the branches of the phylogenetic tree if rates are constant, positively or negatively associated with the predictor trait. However, differentiating between competing models using $\Delta$AIC scores remains a challenge. Herein we used phylogenetic trees with 200 species and we discretized continuous functions using 5 rate categories ($\mathit{k}$). It is plausible, and likely, that both the number of species and $\mathit{k}$ might influence our capability to differentiate among models using AIC or other criteria for selecting models. 
+
+To perform such tests one need to increase both the number of rate categories used to discretize the models and the number of branches that stochastic mapped histories need to be simulated on. However the current implementation of stochastic mapping reconstructions offered by the R package \texttt{phytools} does not scale well with the number of traits in the data and creates an important challenge for such tests. Fortunately, Irvahn and Minin (2014) have developed a framework\footnote{This is not last week news, I know. But the performance barrier associated with stochastic mapped histories increases faster in function of the number traits than the number of species in the phylogeny. Studies most often have many species and a reasonable number of traits, such that the time to perform stochastic mapped simulations is long, but possible. However, our framework is based on a larger number of traits (i.e., rate categories). For example, for 200 species and 15 traits a \textit{single} stochastic map simulation using \texttt{phytools} can take up to 10 hours!} that avoids matrix exponentiation on every branch of the phylogenetic tree and drastically improves computational time for generating stochastic mapped histories. Incorporating this framework on our package \texttt{phylofx} will make it possible to increase both the number of trait categories and the number of species on the phylogenetic tree.
+
+\section{Concluding remarks}
+
+We present a novel framework that make it possible to fit mathematical functions that describe the change of rates of evolution of a continuous trait in function of the trait values of a different trait. Such framework is, as far as we know, the first to move away from the implementation of discrete regimes in order to associate two traits evolving in the same tree.
+
+% The conclusion need to have two strong components. One is the innovation for comparative methods as a discipline and the other is about the challenges and new things in macroevolution that the method can help to solve. Here, by far the relationships dependent on climate (niche, area of life, temperature, depth in the water, temperature of the water) is the ones that will be more broad and stand out much clearer. Also there are plenty of examples of analysis that needed to divide the predictor trait into categories, this ones might also be really good empirical question to talk about here. Need to finish bold and brave and showing that this is a worthy path to take. Do not get cought into focusing in the challenges and difficulties, you already did this in the discussion. Two paragraphs of core and a short grand finalle might be just great!
 
 \pagebreak
 
-\begin{table}[h]
+\begin{table}[hp]
 \caption[Number of times each model showed the best Akaike information criterion (AIC) score across 100 simulations using different search strategies.]{Number of times each model showed the best Akaike information criterion (AIC) score across 100 simulations using different search strategies. For each simulation AIC was computed as the mean AIC score across stochastic mapped histories. `Wide' denotes searches in which starting points were randomly draw from a wide uniform distribution of parameter values. `Narrow' and `Fixed' use more informed starting points for the MLE searches: the first draw from an uniform distribution around the parameter values after setting the function to produce rates of evolution equal to the rate estimated using a single rate Brownian motion model; the second sets the starting point as close as possible to the rates that generated the data.}
 \label{tab:best_aic_sims}
 \begin{center}
@@ -97,25 +130,25 @@ Figure \ref{fig:chart_const} are results with data generated under constant rate
 \textbf{True model} & \textbf{Search strategy} & \textbf{Constant} & \textbf{Linear} & \textbf{Step} \\ 
 \hline 
 \noalign{\vskip 2mm} 
-Constant  & Wide & 86 & 0 & 14 \\
-Constant  & Narrow & 88 & 0 & 12 \\
-Constant  & Fixed & 90 & 0 & 10 \\
+Constant  & Wide & 84 & 1 & 15 \\
+Constant  & Narrow & 75 & 11 & 14 \\
+Constant  & Fixed & 89 & 2 & 9 \\
 \noalign{\vskip 2mm} 
-Linear  & Wide & 6 & 2 & 92 \\
-Linear  & Narrow & 7 & 0 & 93 \\
-Linear  & Fixed & 7 & 71 & 22 \\
+Linear  & Wide & 9 & 13 & 78 \\
+Linear  & Narrow & 3 & 84 & 13 \\
+Linear  & Fixed & 9 & 64 & 27 \\
 \noalign{\vskip 2mm} 
-Step  & Wide & 30 & 1 & 69 \\
-Step  & Narrow & 27 & 0 & 73 \\
-Step  & Fixed & 28 & 28 & 44 \\
+Step  & Wide & 17 & 8 & 75 \\
+Step  & Narrow & 16 & 54 & 30 \\
+Step  & Fixed & 20 & 39 & 41 \\
 \noalign{\vskip 2mm} 
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-\begin{table}[h]
-\caption[Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 2 AIC units in favor of the model that generated the data.]{Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 2 AIC units in favor of the model that generated the data. See main text and Table \ref{tab:best_aic_sims} for details on search strategies. Column `N' shows the number of times that the true model had the best AIC score across all other models, independent of the 2 AIC units threshold value.}
+\begin{table}[hp]
+\caption[Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 4 AIC units in favor of the model that generated the data.]{Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 4 AIC units in favor of the model that generated the data. See main text and Table \ref{tab:best_aic_sims} for details on search strategies. Column `N' shows the number of times that the true model had the best AIC score across all other models, independent of the 4 AIC units threshold value.}
 \label{tab:support_true_model}
 \begin{center}
 \begin{tabular}{cccccc}
@@ -123,25 +156,25 @@ Step  & Fixed & 28 & 28 & 44 \\
 \textbf{True model} & \textbf{Search strategy} & \textbf{N} & \textbf{Constant} & \textbf{Linear} & \textbf{Step} \\ 
 \hline 
 \noalign{\vskip 2mm} 
-Constant  & Wide & 86 & --- & 99 & 57 \\
-Constant  & Narrow & 88 & --- & 100 & 60 \\
-Constant  & Fixed & 90 & --- & 99 & 72 \\
+Constant  & Wide & 84 & --- & 94 & 0 \\
+Constant  & Narrow & 75 & --- & 1 & 0 \\
+Constant  & Fixed & 89 & --- & 13 & 0 \\
 \noalign{\vskip 2mm} 
-Linear  & Wide & 2 & 2 & --- & 2 \\
-Linear  & Narrow & 0 & 3 & --- & 0 \\
-Linear  & Fixed & 71 & 79 & --- & 53 \\
+Linear  & Wide & 13 & 25 & --- & 2 \\
+Linear  & Narrow & 84 & 78 & --- & 30 \\
+Linear  & Fixed & 64 & 67 & --- & 38 \\
 \noalign{\vskip 2mm} 
-Step  & Wide & 69 & 49 & 99 & --- \\
-Step  & Narrow & 73 & 51 & 100 & --- \\
-Step  & Fixed & 44 & 46 & 36 & --- \\
+Step  & Wide & 75 & 38 & 79 & --- \\
+Step  & Narrow & 30 & 26 & 1 & --- \\
+Step  & Fixed & 41 & 24 & 18 & --- \\
 \noalign{\vskip 2mm} 
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-\begin{table}[h]
-\caption[Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 2 AIC units in favor of the alternative model when compared to the true model.]{Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 2 AIC units in favor of the alternative model when compared to the true model. See main text and Table \ref{tab:best_aic_sims} for details on search strategies. Column `N' shows the number of times that the true model failed to show the best absolute AIC score across all other models.}
+\begin{table}[hp]
+\caption[Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 4 AIC units in favor of the alternative model when compared to the true model.]{Number of times that mean pairwise $\Delta$AIC across stochastic mapping histories for each model was larger than 4 AIC units in favor of the alternative model when compared to the true model. See main text and Table \ref{tab:best_aic_sims} for details on search strategies. Column `N' shows the number of times that the true model failed to show the best absolute AIC score across all other models.}
 \label{tab:reject_true_model}
 \begin{center}
 \begin{tabular}{cccccc}
@@ -149,40 +182,56 @@ Step  & Fixed & 44 & 46 & 36 & --- \\
 \textbf{True model} & \textbf{Search strategy} & \textbf{N} & \textbf{Constant} & \textbf{Linear} & \textbf{Step} \\ 
 \hline 
 \noalign{\vskip 2mm} 
-Constant  & Wide & 14 & --- & 0 & 2 \\
-Constant  & Narrow & 12 & --- & 0 & 3 \\
-Constant  & Fixed & 9 & --- & 0 & 4 \\
+Constant  & Wide & 16 & --- & 0 & 2 \\
+Constant  & Narrow & 25 & --- & 2 & 3 \\
+Constant  & Fixed & 11 & --- & 1 & 0 \\
 \noalign{\vskip 2mm} 
-Linear  & Wide & 98 & 98 & --- & 98 \\
-Linear  & Narrow & 100 & 95 & --- & 100 \\
-Linear  & Fixed & 29 & 10 & --- & 15 \\
+Linear  & Wide & 87 & 65 & --- & 77 \\
+Linear  & Narrow & 16 & 0 & --- & 0 \\
+Linear  & Fixed & 46 & 5 & --- & 7 \\
 \noalign{\vskip 2mm} 
-Step  & Wide & 31 & 9 & 0 & --- \\
-Step  & Narrow & 27 & 7 & 0 & --- \\
-Step  & Fixed & 56 & 12 & 12 & --- \\
+Step  & Wide & 25 & 0 & 1 & --- \\
+Step  & Narrow & 70 & 0 & 5 & --- \\
+Step  & Fixed & 59 & 0 & 0 & --- \\
 \noalign{\vskip 2mm} 
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-\begin{figure}[h]
+\clearpage
+
+\begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_true_const_plots_2AIC_edited}
-	\caption[Results from performance simulations using datasets generated with a constant evolutionary rate.]{Results from performance simulations using datasets generated with a constant evolutionary rate. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points represent AIC differences (threshold of 2 AIC units) with respect to the constant model: black points show no difference, red points are significantly worse models than the constant model, and blue points are cases in which the alternative model is better than the generating model. Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
+	\includegraphics[scale=0.8]{Ch4_true_const_plots}
+	\caption[Results from performance simulations using datasets generated with a constant evolutionary rate.]{Results from performance simulations using datasets generated with a constant evolutionary rate. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points represent AIC differences (threshold of 4 AIC units) with respect to the constant model: black points show no difference, red points are significantly worse models than the constant model, and blue points are cases in which the alternative model is better than the generating model. Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
 	\label{fig:chart_const}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_true_linear_plots_2AIC_edited}
-	\caption[Results from performance simulations using datasets generated with a linear function between predictor trait values and rates of evolution of the response trait.]{Results from performance simulations using datasets generated with a linear function between predictor trait values and rates of evolution of the response trait. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points represent AIC differences (threshold of 2 AIC units) with respect to the linear model: black points show no difference, red points are significantly worse models than the linear model, and blue points are cases in which the alternative model is better than the generating model. Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
+	\includegraphics[scale=0.8]{Ch4_true_linear_plots}
+	\caption[Results from performance simulations using datasets generated with a linear function between predictor trait values and rates of evolution of the response trait.]{Results from performance simulations using datasets generated with a linear function between predictor trait values and rates of evolution of the response trait. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points represent AIC differences (threshold of 4 AIC units) with respect to the linear model: black points show no difference, red points are significantly worse models than the linear model, and blue points are cases in which the alternative model is better than the generating model. Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
 	\label{fig:chart_linear}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_true_step_plots_2AIC_edited}
-	\caption[Results from performance simulations using datasets generated with a step function between predictor trait values and rates of evolution of the response trait.]{Results from performance simulations using datasets generated with a step function between predictor trait values and rates of evolution of the response trait. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points represent AIC differences (threshold of 2 AIC units) with respect to the step model: black points show no difference, red points are significantly worse models than the step model, and blue points are cases in which the alternative model is better than the generating model. Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
+	\includegraphics[scale=0.8]{Ch4_true_step_plots}
+	\caption[Results from performance simulations using datasets generated with a step function between predictor trait values and rates of evolution of the response trait.]{Results from performance simulations using datasets generated with a step function between predictor trait values and rates of evolution of the response trait. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points represent AIC differences (threshold of 4 AIC units) with respect to the step model: black points show no difference, red points are significantly worse models than the step model, and blue points are cases in which the alternative model is better than the generating model. Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
 	\label{fig:chart_step}
+\end{figure}
+
+\begin{figure}[hp]
+	\centering
+	\includegraphics[scale=0.8]{Ch4_hist_hits_edited}
+	\caption[Number of `hits' computed across each of the stochastic mapped histories for each simulation replicate and model.]{Number of `hits' computed across each of the stochastic mapped histories for each simulation replicate and model. Large number of `hits' means that multiple independent searches converged to the same log-likelihood score (with tolerance of 0.0001) and, as a result, same parameter values for the model. A total of 500 independent searches was conducted for each data set.}
+	\label{fig:hist_hits}
+\end{figure}
+
+\begin{figure}[hp]
+	\centering
+	\includegraphics[scale=0.85]{Ch4_pardist_vs_hits}
+	\caption[Relationship between the mean absolute distance of parameter estimates from the parameter values that generated the data and the number of `hits' after 500 independent searches.]{Relationship between the mean absolute distance of parameter estimates from the parameter values that generated the data and the number of `hits'. Plot show the results for 2000 datasets generated using the linear function and estimated using the same model. For each replicate we performed 500 independent searches for the best likelihood score starting from random points in the parameter space. Points show the mean absolute distance between the estimated and the true parameter values for each parameter of the model (i.e., slope and intercept). Bars around the points show standard deviations and sample size numbers are shown above or below each point. Dashed red line line marks distance of 0 between the true and estimated parameter values.}
+	\label{fig:pardist}
 \end{figure}
