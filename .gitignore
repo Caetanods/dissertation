@@ -1,8 +1,12 @@
 build/
+figures_functions/
+figure_show_model/
+old_copy/
 UI_Thesis_LaTeX_Template_Sp_2016.tex
 *.odt
 *.doc
 *.docx
 *.txt
 *.ods
+*.pdf
 .~*
