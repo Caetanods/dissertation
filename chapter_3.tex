@@ -140,35 +140,38 @@ Function & Description \\
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.85]{separation_strategy_figure_updated}
+	\includegraphics[scale=0.9]{separation_strategy_figure_updated}
 	\caption[Diagram of the separation strategy proposal.]{Diagram of the separation strategy proposal \citep{barnard_modeling_2000}. Boxes in grey show the proposal distributions for the variance vector and correlation matrix that compose the evolutionary rate matrix ($\mathbf{R}$). Boxes in blue show the elements that are directly (or indirectly, in the case of the covariance matrix) evaluated in the acceptance step of the MCMC. The yellow circle shows the transformation ($T$) required to decompose the variance-covariance matrix sampled from a inverse-Wishart into a correlation matrix and the variance vector. The yellow square shows the formula for the Jacobian correction due to $T$ \citep{zhang_sampling_2006}, where $d_{i}$ stands for the variance of traits 1 to $q$. The red square demonstrates that a additional variance vector is produced in the process, but it is discarded. The green circle is a representation of the $\mathbf{R}$ matrix as a product between the variance vector and the correlation matrix.}
 	\label{fig:proposal}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4]{weak_and_strong_prior}
+	\includegraphics[scale=0.45]{weak_and_strong_prior_mod}
 	\caption[Samples from the prior of the evolutionary rate matrix ($\mathbf{R}$) for two simulated traits using the separation strategy.]{Samples from the prior of the evolutionary rate matrix ($\mathbf{R}$) for two simulated traits using the separation strategy \citep{barnard_modeling_2000}. Standard deviation was modelled as a uniform distribution between 0 and 10 and the correlation matrix was derived from a inverse-Wishart centered on a scale matrix with positive correlation (corr = 0.5). Top figure shows a weak prior with small value for the degrees of freedom parameter ($\nu$ = 3) whereas bottom figure are draws from a more informative prior ($\nu$ = 12). In each figure, the plots in the diagonal show evolutionary rates for each trait whereas the upper-diagonal plot shows the evolutionary covariation. Lower-diagonal plot show 150 randomly sampled ellipses representing the 95\% quantile for the bivariate distribution. Although both priors share the same scale matrix, when $\nu$ is small the prior distribution has more variance than when $\nu$ is larger. The diagonal plots are held constant since the prior distribution for the standard deviation is the same in both figures. Note that ellipses show both positive and negative correlation when the prior is weak (top figure) and positive or no correlation when the prior is more informative (bottom figure).}
 	\label{fig:prior_samples}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.7]{ratematrix_plot_red_and_black_edited}
+	\includegraphics[scale=0.95]{ratematrix_plot_red_and_black_edited}
 	\caption[Posterior distribution of the evolutionary rate matrix ($\mathbf{R}$) regimes fitted to the island anole and mainland anole lineages.]{Posterior distribution of the evolutionary rate matrix ($\mathbf{R}$) regimes fitted to the island anole (gray) and mainland anole (pink) lineages. A different $\mathbf{R}$ matrix were jointly estimated for each regime. The plots in the diagonal show evolutionary rates (variances) for each trait; $\sigma_{1}^{2}$ for SVL, $\sigma_{2}^{2}$ for tail length, and $\sigma_{3}^{2}$ for head length. Upper-diagonal plots show pairwise evolutionary covariation (covariances); $\sigma_{1,2}^{2}$ between SVL and tail length, $\sigma_{1,3}^{2}$ between SVL and head length, and $\sigma_{2,3}^{2}$ between tail length and head length. The ellipses in the lower-diagonal plots represent the 95\% confidence interval of each bivariate distribution for 50 randomly sampled $\mathbf{R}$ matrices from the posterior. The order of the ellipse plots is a mirror reflection from the upper-diagonal evolutionary covariance plots. Ellipses are only a sample of the posterior because a very large number of lines can become hard to visualize, however the user can set any number of samples (or the entire posterior).}
 	\label{fig:anolesGrid}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4]{time_plots}
+	\includegraphics[scale=0.55]{time_plots}
 	\caption[Time in seconds spent to compute the likelihood function using different approaches.]{Time in seconds spent to compute the likelihood function using different approaches. Top figure shows computational time for two traits and a phylogeny of different number of species. Bottom figure shows computational time with a phylogeny of 400 species and increasing number of traits. Both plots show a comparison among three approaches: `inverse' uses the full inverse and determinant of matrices as implemented in \texttt{phytools} \citep{revell_phytools:_2012}, `rpf' uses the rectangular full-packed format algorithm as implemented in \texttt{mvMORPH} \citep{Clavel_mvmorph}, and `pruning' uses \citet{felsenstein_1973} pruning algorithm as implemented in \texttt{ratematrix}.}
 	\label{fig:time_plot}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{anoles_simmap_tree}
-	\caption[Maximum clade credibility phylogenetic tree for anole lizards made available by \citet{gamble_anolis_2014}.]{Maximum clade credibility phylogenetic tree for anole lizards made available by \citet{gamble_anolis_2014}. Only anole species included in the analysis are shown. Branches painted in brown represent mainland lineages whereas branches in green are island lineages. Regimes were mapped to the tree using stochastic mapping with root state set to mainland, as implemented in the package \texttt{phytools} \citep{revell_phytools:_2012}. Please refer to \citet{caetano_sysbio_2017} for more information.}
-	\label{fig:anoles_simmap}
+	\includegraphics[scale=0.72]{anoles_simmap_tree}
+%	\caption[Maximum clade credibility phylogenetic tree for anole lizards made available by \citet{gamble_anolis_2014}.]{Maximum clade credibility phylogenetic tree for anole lizards made available by \citet{gamble_anolis_2014}. Only anole species included in the analysis are shown. Branches painted in brown represent mainland lineages whereas branches in green are island lineages. Regimes were mapped to the tree using stochastic mapping with root state set to mainland, as implemented in the package \texttt{phytools} \citep{revell_phytools:_2012}. Please refer to \citet{caetano_sysbio_2017} for more information.}
+%	\label{fig:anoles_simmap}
 \end{figure}
+\clearpage % insert a page break
+\captionof{figure}[Maximum clade credibility phylogenetic tree for anole lizards made available by \citet{gamble_anolis_2014}.]{Maximum clade credibility phylogenetic tree for anole lizards made available by \citet{gamble_anolis_2014}. Only anole species included in the analysis are shown. Branches painted in brown represent mainland lineages whereas branches in green are island lineages. Regimes were mapped to the tree using stochastic mapping with root state set to mainland, as implemented in the package \texttt{phytools} \citep{revell_phytools:_2012}. Please refer to \citet{caetano_sysbio_2017} for more information.}
+\label{fig:anoles_simmap}

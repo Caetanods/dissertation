@@ -230,91 +230,103 @@ ss-correlation & 0.01 & 1 & 0.06 & 0.03 & 0.26 & 1 \\
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.60]{posterior_sims_big_plate}
-	\caption[Example of posterior distribution for the six simulation treatments with three traits each.]{Example of posterior distribution for the six simulation treatments with three traits each. Top-left plot shows the results with no shift in the evolutionary rate matrix regime and top-right shows the results with a shift in the orientation of $\mathbf{R}$. Middle row are results with a shift in the rates of evolution of each trait and bottom row shows the results when the strength of the evolutionary correlation shifts between regimes. Estimates for the background regime are showed in black and for the focus regime in red (see Fig. \ref{fig:phylogeny_sims}). For each plot: diagonal histograms show evolutionary rates (variances) for each trait, upper-diagonal histograms show pairwise evolutionary covariation (covariances), and lower-diagonal ellipses are samples from the posterior distribution showing the 95\% confidence interval of each bivariate distribution. Numbers in the top left of histograms are the true value used for each simulation; background rate regimes are showed in black and focus clade regimes in red. Table \ref{tab:model_test} shows the aggregate results for each simulation replicate: `Single' and `Orient' correspond to top-left and top-right plots. `Rates' I and II are middle row left and right plots. `Integ' I and II are bottom row left and right plots. The two replicates in the middle and bottom rows differ in the strength of the shift between regimes, left is weak and right is strong shift.}
-	\label{fig:posterior_sims}
+	\includegraphics[scale=1]{posterior_sims_big_plate_mod}
+	%\caption[Example of posterior distribution for the six simulation treatments with three traits each.]{Example of posterior distribution for the six simulation treatments with three traits each. Top-left plot shows the results with no shift in the evolutionary rate matrix regime and top-right shows the results with a shift in the orientation of $\mathbf{R}$. Middle row are results with a shift in the rates of evolution of each trait and bottom row shows the results when the strength of the evolutionary correlation shifts between regimes. Estimates for the background regime are showed in black and for the focus regime in red (see Fig. \ref{fig:phylogeny_sims}). For each plot: diagonal histograms show evolutionary rates (variances) for each trait, upper-diagonal histograms show pairwise evolutionary covariation (covariances), and lower-diagonal ellipses are samples from the posterior distribution showing the 95\% confidence interval of each bivariate distribution. Numbers in the top left of histograms are the true value used for each simulation; background rate regimes are showed in black and focus clade regimes in red. Table \ref{tab:model_test} shows the aggregate results for each simulation replicate: `Single' and `Orient' correspond to top-left and top-right plots. `Rates' I and II are middle row left and right plots. `Integ' I and II are bottom row left and right plots. The two replicates in the middle and bottom rows differ in the strength of the shift between regimes, left is weak and right is strong shift.}
+	%\label{fig:posterior_sims}
 \end{figure}
+\clearpage % insert a page break
+\captionof{figure}[Example of posterior distribution for the six simulation treatments with three traits each.]{Example of posterior distribution for the six simulation treatments with three traits each. Top-left plot shows the results with no shift in the evolutionary rate matrix regime and top-right shows the results with a shift in the orientation of $\mathbf{R}$. Middle row are results with a shift in the rates of evolution of each trait and bottom row shows the results when the strength of the evolutionary correlation shifts between regimes. Estimates for the background regime are showed in black and for the focus regime in red (see Fig. \ref{fig:phylogeny_sims}). For each plot: diagonal histograms show evolutionary rates (variances) for each trait, upper-diagonal histograms show pairwise evolutionary covariation (covariances), and lower-diagonal ellipses are samples from the posterior distribution showing the 95\% confidence interval of each bivariate distribution. Numbers in the top left of histograms are the true value used for each simulation; background rate regimes are showed in black and focus clade regimes in red. Table \ref{tab:model_test} shows the aggregate results for each simulation replicate: `Single' and `Orient' correspond to top-left and top-right plots. `Rates' I and II are middle row left and right plots. `Integ' I and II are bottom row left and right plots. The two replicates in the middle and bottom rows differ in the strength of the shift between regimes, left is weak and right is strong shift.}
+\label{fig:posterior_sims}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.7]{prior_empirical_width_edit}
+	\includegraphics[scale=0.9]{prior_empirical_width_edit}
 	\caption[Prior distribution for the evolutionary rate matrix ($\mathbf{R}$) used for all analyses.]{Prior distribution for the evolutionary rate matrix ($\mathbf{R}$) used for all analyses. Plate shows samples in the interval between -1 and 1 from the prior for a model with three traits. Diagonal plots represent the prior for evolutionary rates (variances) for each trait, upper-diagonal plots show pairwise evolutionary covariation (covariances), and lower-diagonal are samples from the posterior distribution of ellipses showing the 95\% confidence interval of each bivariate distribution.}
 	\label{fig:prior}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.4]{percentiles_mle_true_edit}
+	\includegraphics[scale=0.5]{percentiles_mle_true_edit}
 	\caption[Distribution of percentiles for the maximum likelihood estimate (MLE) of the full model and for the true value of the simulations with respect to the posterior distribution of each simulation replicate.]{Distribution of percentiles for the maximum likelihood estimate (MLE) of the full model and for the true value of the simulations with respect to the posterior distribution of each simulation replicate. Plots to the left (pink) show the percentiles for the MLE whereas plots to the right (blue) show the percentiles for the true value of the simulations. Most of the density across all simulation scenarios and parameters is within the 95\% HPD of the posterior distribution.}
 	\label{fig:quantiles}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{anoles_figure}
+	\includegraphics[scale=0.56]{anoles_figure_mod}
 	\caption[Posterior distribution of the $\mathbf{R}$ matrix regimes fitted to the island anole and mainland anole lineages.]{Posterior distribution of the $\mathbf{R}$ matrix regimes fitted to the island anole (green) and mainland anole (brown) lineages. Left figure shows the maximum clade credibility tree (MCC) from \citet{gamble_anolis_2014} with only the taxa used in this study. State reconstruction for the branches was performed with a stochastic map simulation using `mainland' as the root state for the genus. Right upper plot shows the posterior distribution of parameter estimates for the evolutionary rate matrices. Diagonal plots show evolutionary rates (variances) for each trait, upper-diagonal plots show pairwise evolutionary covariation (covariances), and lower-diagonal are samples from the posterior distribution of ellipses showing the 95\% confidence interval of each bivariate distribution. Right bottom figure shows a representation of each trait (TL: tail length; HL: head length; SVL: snout-vent length).}
 	\label{fig:anoles}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{results_centrarchidae}
+	\includegraphics[scale=0.54]{results_centrarchidae}
 	\caption[Posterior distribution of the $\mathbf{R}$ matrix regimes fitted to the background group and to the \textit{Micropterus} clade.]{Posterior distribution of the $\mathbf{R}$ matrix regimes fitted to the background group (gray) and to the \textit{Micropterus} clade (red). Left figure shows the phylogeny from \citep{revell_phylogenetic_2009} and the silhouette of some representatives of the Centrarchidae genera. Right plot shows the posterior distribution of parameter estimates for the evolutionary rate matrices. Diagonal plots show evolutionary rates (variances) for each trait, upper-diagonal plots show pairwise evolutionary covariation (covariances), and lower-diagonal are samples from the posterior distribution of ellipses showing the 95\% confidence interval of each bivariate distribution.}
 	\label{fig:centrarchidae}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{root_sims_plate}
-	\caption[Example of posterior distribution of root values for the six simulation treatments with three traits each.]{Example of posterior distribution of root values for the six simulation treatments with three traits each. Simulation treatments are the same as showed on Figure \ref{fig:posterior_sims}. Top and bottom plots for `Shift of rates' and `Shift of integration' treatments correspond to the left and right plots of the same treatments on Figure \ref{fig:posterior_sims}, respectively. The true value for the ancestral state of each trait in all simulations was equal to 10.}
-	\label{fig:sup_root_sims}
+	\includegraphics[scale=0.87]{root_sims_plate}
+%	\caption[Example of posterior distribution of root values for the six simulation treatments with three traits each.]{Example of posterior distribution of root values for the six simulation treatments with three traits each. Simulation treatments are the same as showed on Figure \ref{fig:posterior_sims}. Top and bottom plots for `Shift of rates' and `Shift of integration' treatments correspond to the left and right plots of the same treatments on Figure \ref{fig:posterior_sims}, respectively. The true value for the ancestral state of each trait in all simulations was equal to 10.}
+%	\label{fig:sup_root_sims}
 \end{figure}
+\clearpage % insert a page break
+\captionof{figure}[Example of posterior distribution of root values for the six simulation treatments with three traits each.]{Example of posterior distribution of root values for the six simulation treatments with three traits each. Simulation treatments are the same as showed on Figure \ref{fig:posterior_sims}. Top and bottom plots for `Shift of rates' and `Shift of integration' treatments correspond to the left and right plots of the same treatments on Figure \ref{fig:posterior_sims}, respectively. The true value for the ancestral state of each trait in all simulations was equal to 10.}
+\label{fig:sup_root_sims}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{plate_root_value_flat}
-	\caption[Example of posterior distribution of root values for the six simulation treatments with three traits each using a uniform prior for the vector of root values.]{Example of posterior distribution of root values for the six simulation treatments with three traits each using a uniform prior for the vector of root values. Simulation treatments are the same as showed on Figure \ref{fig:posterior_sims} and Figure \ref{fig:sup_root_sims}. The true value for the ancestral state of each trait in all simulations was equal to 10.}
-	\label{fig:sup_root_sims_flat}
+	\includegraphics[scale=0.85]{plate_root_value_flat}
+%	\caption[Example of posterior distribution of root values for the six simulation treatments with three traits each using a uniform prior for the vector of root values.]{Example of posterior distribution of root values for the six simulation treatments with three traits each using a uniform prior for the vector of root values. Simulation treatments are the same as showed on Figure \ref{fig:posterior_sims} and Figure \ref{fig:sup_root_sims}. The true value for the ancestral state of each trait in all simulations was equal to 10.}
+%	\label{fig:sup_root_sims_flat}
 \end{figure}
+\clearpage % insert a page break
+\captionof{figure}[Example of posterior distribution of root values for the six simulation treatments with three traits each using a uniform prior for the vector of root values.]{Example of posterior distribution of root values for the six simulation treatments with three traits each using a uniform prior for the vector of root values. Simulation treatments are the same as showed on Figure \ref{fig:posterior_sims} and Figure \ref{fig:sup_root_sims}. The true value for the ancestral state of each trait in all simulations was equal to 10.}
+\label{fig:sup_root_sims_flat}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.5]{Gamble_full_biogeo}
-	\caption[Maximum clade credibility tree from \citet{gamble_anolis_2014} study showing the distribution of `mainland' and `island' anole species.]{Maximum clade credibility tree from \citet{gamble_anolis_2014} study showing the distribution of `mainland' and `island' anole species. The species `sp\_nov\_1', `sp\_nov\_2', and `sp\_nov\_3'  were excluded from the phylogenetic tree. Data for the distribution of anole species and outgroups were compiled from \citet{nicholson_mainland_2005}, \citet{losos_lizards_2009}, \citet{thomas_body_2009}, Reptile database (reptile-database.org) and GBIF (gbif.org). Ancestral state reconstruction was performed using stochastic mapping with the `all rates different' model and the root state set as `mainland' \citep{nicholson_mainland_2005, losos_lizards_2009}. }
-	\label{fig:biogeo_gamble}
+	\includegraphics[scale=0.72]{Gamble_full_biogeo_mod}
+%	\caption[Maximum clade credibility tree from \citet{gamble_anolis_2014} study showing the distribution of `mainland' and `island' anole species.]{Maximum clade credibility tree from \citet{gamble_anolis_2014} study showing the distribution of `mainland' and `island' anole species. The species `sp\_nov\_1', `sp\_nov\_2', and `sp\_nov\_3'  were excluded from the phylogenetic tree. Data for the distribution of anole species and outgroups were compiled from \citet{nicholson_mainland_2005}, \citet{losos_lizards_2009}, \citet{thomas_body_2009}, Reptile database (reptile-database.org) and GBIF (gbif.org). Ancestral state reconstruction was performed using stochastic mapping with the `all rates different' model and the root state set as `mainland' \citep{nicholson_mainland_2005, losos_lizards_2009}. }
+%	\label{fig:biogeo_gamble}
 \end{figure}
+\clearpage % insert a page break
+\captionof{figure}[Maximum clade credibility tree from \citet{gamble_anolis_2014} study showing the distribution of `mainland' and `island' anole species.]{Maximum clade credibility tree from \citet{gamble_anolis_2014} study showing the distribution of `mainland' and `island' anole species. The species `sp\_nov\_1', `sp\_nov\_2', and `sp\_nov\_3'  were excluded from the phylogenetic tree. Data for the distribution of anole species and outgroups were compiled from \citet{nicholson_mainland_2005}, \citet{losos_lizards_2009}, \citet{thomas_body_2009}, Reptile database (reptile-database.org) and GBIF (gbif.org). Ancestral state reconstruction was performed using stochastic mapping with the `all rates different' model and the root state set as `mainland' \citep{nicholson_mainland_2005, losos_lizards_2009}. }
+\label{fig:biogeo_gamble}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.3]{anoles_root_plot}
+	\includegraphics[scale=0.53]{anoles_root_plot_mod}
 	\caption[Posterior distribution of root values fitted to the island and mainland anole lineages.]{Posterior distribution of root values fitted to the island and mainland anole lineages (SVL: snout-vent length).}
 	\label{fig:sup_root_anoles}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{anoles_log_trace_plots}
+	\includegraphics[scale=0.8]{anoles_log_trace_plots_mod}
 	\caption[Trace plots of the log-likelihood and the acceptance ratio for the four independent MCMC chains of the island and mainland anole analysis.]{Trace plots of the log-likelihood and the acceptance ratio for the four independent MCMC chains of the island and mainland anole analysis. }
 	\label{fig:sup_trace_anoles}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.7]{root_plot_centrarchidae}
+	\includegraphics[scale=0.8]{root_plot_centrarchidae}
 	\caption[Posterior distribution of root values fitted to the Centrarchidae fishes.]{Posterior distribution of root values fitted to the Centrarchidae fishes.}
 	\label{fig:sup_root_centrarchidae}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{trace_plots_centrarchidae}
+	\includegraphics[scale=0.8]{trace_plots_centrarchidae_mod}
 	\caption[Trace plots of the log-likelihood and the acceptance ratio for the four independent MCMC chains of the Centrarchidae fishes analysis.]{Trace plots of the log-likelihood and the acceptance ratio for the four independent MCMC chains of the Centrarchidae fishes analysis. }
 	\label{fig:sup_trace_centrarchidae}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.6]{centrarchidae_compare_with_mle}
+	\includegraphics[scale=0.8]{centrarchidae_compare_with_mle}
 	\caption[Posterior distribution of the $\mathbf{R}$ matrix regimes fitted to the background group and to the \textit{Micropterus} clade.]{Posterior distribution of the $\mathbf{R}$ matrix regimes fitted to the background group (gray) and to the \textit{Micropterus} clade (red). Maximum likelihood estimate for the same data and phylogenetic tree showed in blue lines. Plot shows the posterior distribution of parameter estimates for the evolutionary rate matrices. Diagonal plots show evolutionary rates (variances) for each trait, upper-diagonal plot show pairwise evolutionary covariation (covariances), and lower-diagonal plot shows samples from the posterior distribution of ellipses showing the 95\% confidence interval of each bivariate distribution.}
 	\label{fig:centrarchidae_mle}
 \end{figure}

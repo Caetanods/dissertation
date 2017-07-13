@@ -204,7 +204,7 @@ Step  & Fixed & 59 & 0 & 0 & --- \\
 
 \begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.95]{Ch4_math_functions}
+	\includegraphics[scale=1.01]{Ch4_math_functions}
 	\caption[List of mathematical functions implemented in the R package \texttt{phylofx}.]{List of mathematical functions implemented in the R package \texttt{phylofx}. Plots on the left show regression lines between the values of the predictor trait and the rates of evolution of the response trait ($\sigma^{2}_{response}$). Middle column shows the mathematical function(s) associated with each plot and right column provides a brief description of each function. These functions are easily selected from a menu when using the \texttt{phylofx}, however any mathematical function that associates trait predictor trait values to $\sigma^{2}_{response}$ can be implemented on \texttt{phylofx}.}
 	\label{fig:bio_functions}
 \end{figure}
@@ -218,35 +218,35 @@ Step  & Fixed & 59 & 0 & 0 & --- \\
 
 \begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_true_const_plots}
+	\includegraphics[scale=0.88]{Ch4_true_const_plots}
 	\caption[Results from performance simulations using datasets generated with a constant evolutionary rate.]{Results from performance simulations using datasets generated with a constant evolutionary rate. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5 while y axes show $\sigma^{2}_{response}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points mark if the model is significantly better (threshold of 4 $\Delta$AIC units) than the model that generated the data (blue), worse than the generating model (red), or show no significant difference (black). Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
 	\label{fig:chart_const}
 \end{figure}
 
 \begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_true_linear_plots}
+	\includegraphics[scale=0.865]{Ch4_true_linear_plots}
 	\caption[Results from performance simulations using datasets generated with a linear function between predictor trait values and rates of evolution of the response trait.]{Results from performance simulations using datasets generated with a linear function between predictor trait values and rates of evolution of the response trait. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points mark if the model is significantly better (threshold of 4 $\Delta$AIC units) than the model that generated the data (blue), worse than the generating model (red), or show no significant difference (black). Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
 	\label{fig:chart_linear}
 \end{figure}
 
 \begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_true_step_plots}
+	\includegraphics[scale=0.85]{Ch4_true_step_plots}
 	\caption[Results from performance simulations using datasets generated with a step function between predictor trait values and rates of evolution of the response trait.]{Results from performance simulations using datasets generated with a step function between predictor trait values and rates of evolution of the response trait. Each plot shows the distance between the true value for the evolutionary rate and the estimated value for each of the 5 predictor trait categories used in the analyses. Columns show parameter estimates under different models and rows correspond to three search strategies. The x axes are the predictor trait categories from 1 to 5, y axes show $\sigma^{2}$ associated with each category. The horizontal red line marks 0, which correspond to parameter estimates equal to the true value used to generate the data. The color of the points mark if the model is significantly better (threshold of 4 $\Delta$AIC units) than the model that generated the data (blue), worse than the generating model (red), or show no significant difference (black). Each point is the mean parameter estimate across stochastic mapped histories for each of the 100 simulations. Points were slightly dislocated horizontally for better visualization.}
 	\label{fig:chart_step}
 \end{figure}
 
 \begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.8]{Ch4_hist_hits_edited}
-	\caption[Number of `hits' computed across each of the stochastic mapped histories for each simulation replicate and model.]{Number of `hits' computed across each of the stochastic mapped histories for each simulation replicate and model. Large number of `hits' means that multiple independent searches converged to the same log-likelihood score (with tolerance of 0.0001) and, as a result, same parameter values for the model. A total of 500 independent searches was conducted for each data set.}
+	\includegraphics[scale=1.15]{Ch4_hist_hits_edited_mod}
+	\caption[Number of `hits' computed across each of the stochastic mapped histories for each simulation replicate and model.]{Number of `hits' computed for 500 independent searches across each of the stochastic mapped histories for each simulation replicate and model. Large number of `hits' means that multiple independent searches converged to the same log-likelihood score.}
 	\label{fig:hist_hits}
 \end{figure}
 
 \begin{figure}[hp]
 	\centering
-	\includegraphics[scale=0.85]{Ch4_pardist_vs_hits}
+	\includegraphics[scale=0.9]{Ch4_pardist_vs_hits}
 	\caption[Relationship between the mean absolute distance of parameter estimates from the parameter values that generated the data and the number of `hits' after 500 independent searches.]{Relationship between the mean absolute distance of parameter estimates from the parameter values that generated the data and the number of `hits'. Plot show the results for 2000 datasets generated using the linear function and estimated using the same model. For each replicate we performed 500 independent searches for the best log-likelihood score starting from random points in the parameter space (using both the `wide' and `narrow' starting point strategies). Points show the mean absolute distance between the estimated and the true parameter values for each parameter of the model (i.e., slope and intercept). Bars around the points show standard deviations and sample size numbers are shown above or below each point. The dashed red line marks when estimated parameter values are identical to the parameter values that generated the data.}
 	\label{fig:pardist}
 \end{figure}
